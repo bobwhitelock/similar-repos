@@ -20,9 +20,9 @@ class DataFetcher extends Component {
 }
 
 const StargazersStarredRepos = gql`
-query StargazersStarredRepos {
-  repositoryOwner(login: "BurntSushi") {
-    repository(name: "ripgrep") {
+query StargazersStarredRepos($user: String!, $repo: String!) {
+  repositoryOwner(login: $user) {
+    repository(name: $repo) {
       id,
       name,
       description,
