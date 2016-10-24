@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import DataDisplayer from './DataDisplayer';
+import ErrorDisplayer from './ErrorDisplayer';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
 class DataFetcher extends Component {
   render() {
-    return (
-      <div>
-        {this.props.data.loading ? null : <DataDisplayer data={this.props.data}/>}
-      </div>
-    );
+    const {data, data: {error}} = this.props
+    if (data.loading) {
+      return <div>Loading...</div>
+    }
+    else if (error) {
+      return <ErrorDisplayer error={error}/>
+    }
+    else {
+      return <DataDisplayer data={data}/>
+    }
   }
 }
 
