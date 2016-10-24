@@ -4,7 +4,12 @@ import JSONTree from 'react-json-tree';
 
 class DataDisplayer extends Component {
   render() {
-    const mainRepo = this.props.data.repositoryOwner.repository
+    const owner = this.props.data.repositoryOwner
+    const mainRepo = owner && owner.repository
+    if (!(owner && mainRepo)) {
+      return <span>Not found!</span>
+    }
+
     const stargazers = mainRepo.stargazers.edges
 
     const starredRepos = _(stargazers)
