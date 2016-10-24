@@ -17,6 +17,7 @@ const StargazersStarredRepos = gql`
 query StargazersStarredRepos {
   repositoryOwner(login: "BurntSushi") {
     repository(name: "ripgrep") {
+      id,
       name,
       description,
       stargazers(last: 30) {
